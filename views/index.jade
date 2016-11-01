@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+    br
+    strong Login
+    br
+    form#Login(name="Login",method="post",action="/Login")
+        table
+            tr
+                td
+                    input#username(type="text", placeholder="username", name="username")
+                td
+                    input#password(type="password", placeholder="password", name="password")
+                td 
+                    button#btnSubmit(type="submit") Login
+    br
+    strong Registration
+    br
+      
+    form#Register(name="register",method="post",action="/register")
+        table
+            tr
+                td FirstName
+                td 
+                    input#username(type="text", placeholder="FirstName", name="FirstName")
+            tr
+                td LastName
+                td 
+                    input#username(type="text", placeholder="LastName", name="LastName")
+            tr
+                td Userid
+                td 
+                    input#username(type="text", placeholder="userid", name="Userid")  
+            tr
+                td password
+                td
+                    input#password(type="password", placeholder="password", name="password")
+            tr
+                td confirm password
+                td
+                    input#password(type="password", placeholder="confirm password", name="confirmpass")
+            tr
+                td(colspan=2)
+                    button#btnSubmit(type="submit") Register
+  p#result #{result}

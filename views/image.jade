@@ -1,0 +1,16 @@
+
+doctype html
+html
+  head
+    title=title
+  body
+    table
+        tr
+                th Role-Image
+                th Role-Name
+        for image in images
+            tr
+                td                         
+                    img(src="/images/"+image.role_name,style="width:50px;height:50px;padding-top:5px")
+                td
+                    em #{image.role_name}

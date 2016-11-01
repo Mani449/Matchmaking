@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+    br
+    h2 Userid:#{userid}
+    strong Do you want to play again?
+    br
+    form#play(name="play",method="post",action="/play")
+     input(type="hidden",value=userid,name="userid",id="userid")
+     input(type="hidden",value=matchid,id="matchid",name="matchid")
+     table
+       tr
+         td
+           input(type="radio",name="play",id="play",value="Yes" checked)
+           span Yes
+         td
+           input(type="radio",name="play",id="play",value="No") 
+           span No
+         td 
+           button#btnSubmit(type="submit") Submit
+    p#result #{result}

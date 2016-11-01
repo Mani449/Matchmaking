@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title=title
+  body
+    div#first(style="width:400px;height:600px;margin-right:10px;float:left;")
+     h2 Preferences of #{userid}
+     p#message ---------------
+     table
+      each preference, i in preferences
+       tr
+        for image in preference
+         td                         
+          img(src="/images/"+image.role_name,alt=image.role_name,style="width:50px;height:50px;padding-top:5px")
+         // td #{scores[i]}
+    div#second(style="width:400px;height:600px;margin-right:10px;float:left;")
+     h2 Match Making Process
+     h2 Userid:#{userid}
+     form(id="match_making",action="/making",method="post")
+      input(type="hidden",value=userid,name="userid")
+      input(type="hidden",value=matchid,id="matchid",name="matchid")
+      input(type="hidden",value=count,name="count")
+     img(src="/images/wait.gif",alt="Waiting") 
+  script(src="/socket.io/socket.io.js")
+  script(src="http://code.jquery.com/jquery-1.11.1.js")
+  script.
+     var socket = io('/match');
+     socket.emit('sign','#{userid}');
+     socket.on('sign', 
+                        function(msg)
+                        {
+                            console.log(msg);
+                            if(msg[0] === 'M')
+                            {
+                                document.getElementById("matchid").value=msg;
+                                document.getElementById("match_making").submit();
+                                msg="Will be forwarded to matchmaking process";
+                            }
+                            $('#message').text(msg);
+                        }
+               );

@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>Check for time</title>
+	<style>
+			.radio {
+					opacity: 0;
+					position: absolute;
+				}
+.label {
+    background: url(solider);
+    text-indent: -999em;
+    border: 10px solid white;
+    width: 126px;
+    height: 126px;
+    display: block;
+    float: left;
+    margin: 10px;
+}
+input[type="radio"]:checked + label {
+    border: 10px solid orange;
+}
+	</style>
+</head>
+<body>
+	<span id="remain"></span>
+	<form action="https://www.google.com/" method="post" id="form1" name="form1">
+		<input type="text" name="id">
+		<input type="submit" name="Go" value="submit">
+	</form>
+	
+	<form action="#" method="post">
+		<input type="radio" class="radio" name="example" id="ex1" value="ex1" checked />
+		<label for="ex1" class="label">Example 1</label>
+		<input type="radio" class="radio" name="example" id="ex2" value="ex2" />
+		<label for="ex2" class="label">Example 2</label>
+	</form>
+	<script type="text/javascript">
+		
+			window.onload=counter;
+			function counter()
+			{
+				seconds = 90;
+				countDown();
+			}	
+
+			function countDown(){
+				document.getElementById("remain").innerHTML=seconds;
+				setTimeout("countDown()",1000);
+				if(seconds == 0)
+				{
+					document.form1.submit();
+				}else {
+					seconds--;		
+				}
+			}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    title=title
+  body
+        div#first(style="width:600px;height:600px;margin-right:10px;float:left;")
+         h3 Please read instructions for the game
+         p You and Your partners can select can select certain symbols from the following list:
+         table
+          tr
+           th Role-Image
+           th Role-Name
+          for image in images
+           tr
+            td                         
+             img(src="/images/"+image.role_name,style="width:50px;height:50px;padding-top:5px")
+            td
+             em #{image.role_name}
+         p You score points if your team has all of the symbols in one of your goals at the end of time limit.
+         p Your partners may have different goals! Coordinate in order to meet one of your goals.
+        div#second(style="width:600px;height:600px;margin-right:10px;float:left;")
+            h2 Userid:#{userid}
+            p#message Last user to start the game:
+            h3 Preferences of #{userid}
+            table
+             each preference, i in preferences
+              tr
+               for image in preference
+                td                         
+                 img(src="/images/"+image.role_name,alt=image.role_name,style="width:50px;height:50px;padding-top:5px")
+                // td #{scores[i]}
+            h3 Match Making Process
+            table 
+             tr
+              td
+               form(id="match_form",action="/match",method="post")
+                 input(type="hidden",value=userid,name="userid")
+                 input(type="hidden",value=preferences,name="preferences")
+                 input(type="hidden",value=count,name="count")
+                 input(type="submit",value="Begin Match Making")
+              td
+               form(id="match_exit",action="/",method="post")
+                input(type="submit",value="Exit")
+  script(src="/socket.io/socket.io.js")
+  script(src="http://code.jquery.com/jquery-1.11.1.js")
+  script.
+     var socket = io();
+     socket.emit('message','#{userid}');
+     socket.on('message', function(msg){$('#message').text(msg);});
+     //$('form').submit(function(){alert('submit');});
