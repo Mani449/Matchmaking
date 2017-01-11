@@ -48,8 +48,8 @@ prefId_match.on('connection',function(socket)
 			   );
 
 making_process.on('connection', function(socket){
-  //console.log(making_process.adapter.rooms.room);
-  //console.log("Connection to match making with a count of "+making_process.adapter.rooms.room.length);
+  console.log(making_process.adapter.rooms.room);
+  console.log("Connection to match making with a count of "+making_process.adapter.rooms.room.length);
   console.log("id::::::"+socket.matchid);
   socket.on('matchid',function(msg){console.log("message from the jade::::"+msg);socket.join(msg);});
   socket.on('role_change',
